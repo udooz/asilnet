@@ -6,7 +6,7 @@
     {
         public static readonly NoneObject _ = new NoneObject();
 
-        public NoneObject()
+        private NoneObject()
         { }
     }
 }

@@ -11,11 +11,21 @@ namespace AsilNetCore.Tests
             Name = name;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Employee)) return false;
+            var other = (Employee)obj;
+            return this.Name == other.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
+
         public bool Equals(Employee other)
         {
-            var result = string.Compare(Name, other.Name, StringComparison.CurrentCultureIgnoreCase);
-            if (result == 0) return true;
-            else return false;
+            return this.Name == other.Name;
         }
     }
 }
