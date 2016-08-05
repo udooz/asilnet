@@ -9,14 +9,6 @@
     
     public class OptionTypeTests
     {
-        [Fact]
-        public void ShouldBeSome_IfEmployeeObjectIsNotNull()
-        {
-            var empName = "Tamil";
-            var expected = new Employee(empName);
-            var notNullEmployee = new Option<Employee>(new Tests.Employee(empName));            
-            Assert.Equal<Employee>(expected, notNullEmployee.Value);
-        }
 
         [Fact]
         public void IfEmployeeObjectIsNotNull_InitWithSome_ReturnSome()
@@ -31,7 +23,7 @@
         public void IfEmployeeObjectIsNULL_ReturnNone()
         {            
             Employee nullEmployee = null;
-            var optEmployee = new Option<Employee>(nullEmployee);
+            var optEmployee = Some(nullEmployee);
 
             Assert.True(optEmployee.Equals(None));
         }
@@ -72,8 +64,8 @@
         [Fact]
         public void EqualsWithOneNone_ShouldNotBeSame()
         {
-            var employee1 = new Option<Employee>(new Employee("Tamil"));
-            var employee2 = new Option<Employee>(null);            
+            var employee1 = Some(new Employee("Tamil"));
+            var employee2 = Some<Employee>(null);            
             Assert.NotEqual(employee1, employee2);
         }
 
@@ -81,7 +73,7 @@
         public void EqualsWithBothNone_ShouldBeSame()
         {
             Option<Employee> employee1 = None;
-            Option<Employee> employee2 = new Option<Employee>(null);
+            Option<Employee> employee2 = Some<Employee>(null);
 
             Assert.Equal(employee1, employee2);
         }
@@ -91,13 +83,12 @@
         {
             var expected = true;
             var empName = "Tamil";
-            Option<Employee> employee1 = new Option<Employee>(new Employee(empName));
-            Option<Employee> employee2 = new Option<Employee>(new Employee(empName));
+            Option<Employee> employee1 = Some(new Employee(empName));
+            Option<Employee> employee2 = Some(new Employee(empName));
             var actual = employee1.Equals(employee2);
 
             Assert.Equal(expected, actual);
         }
-
 
         private Option<int> ToInt(string value)
         {

@@ -9,15 +9,15 @@
 
         public T Value { get; } 
         
-        public Option(T value, bool isSome)
+        internal Option(T value, bool isSome)
         {
             this.Value = value;
             this.isSome = isSome;
         }
-        public Option(T value)
+        internal Option(T value)
             : this(value, value != null) { }
 
-        private Option()
+        internal Option()
             : this(default(T)) { }
 
         //TODO: Ensure - this can be a privat field
