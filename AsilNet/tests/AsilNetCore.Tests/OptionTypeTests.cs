@@ -54,7 +54,7 @@
         {
             var expected = 5;
             var intValue = ToInt("5");
-            var actual = intValue.Match(Some: v => v, None: () => -1);
+            var actual = Match(intValue, Some: v => v, None: () => -1);
 
             Assert.Equal(expected, actual);
         }
@@ -64,7 +64,7 @@
         {
             var expected = -1;
             var intValue = ToInt("Abc");
-            var actual = intValue.Match(Some: v => v, None: () => -1);
+            var actual = Match(intValue, Some: v => v, None: () => -1);
 
             Assert.Equal(expected, actual);
         }
